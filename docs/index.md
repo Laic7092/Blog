@@ -2,6 +2,11 @@
 layout: home
 pageClass: homePage
 ---
+
+<script setup lang="ts">
+import PostList from "./.vitepress/components/PostList.vue"
+</script>
+
 <PostList></PostList>
 
 <style>

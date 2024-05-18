@@ -1,6 +1,10 @@
 ---
 title: 归档
-notPost: true
-sidebar: false
+outline: false
 ---
+
+<script setup lang="ts">
+import TimeLine from "./.vitepress/components/TimeLine.vue"
+</script>
+
 <TimeLine></TimeLine>
