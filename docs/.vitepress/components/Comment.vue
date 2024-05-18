@@ -38,5 +38,3 @@ const authUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}
 
 
 </script>
-
-<style scoped></style>

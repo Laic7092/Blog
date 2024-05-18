@@ -7,6 +7,8 @@ interface Post {
         time: number
         string: string
     }
+    location: string
+    tags: Array<string>
     excerpt: string | undefined
 }
 
@@ -22,7 +24,7 @@ export default createContentLoader('posts/*/*/*/*.md', {
             .map(({ url, frontmatter, excerpt }) => ({
                 title: frontmatter.title,
                 url,
-                excerpt,
+                excerpt: "<p>敬请期待</p>",
                 tags: frontmatter.tags,
                 location: frontmatter.location,
                 date: formatDate(frontmatter.date)

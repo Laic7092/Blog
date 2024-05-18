@@ -1,76 +1,74 @@
 <template>
-    <div>
-        <div class="section1">
-            <div class="post-list">
-                <span class="title">Posts</span>
-                <ul>
-                    <li v-for="(post, idx) in filterList" :key="idx">
-                        <article class="el-card mgb-20">
-                            <header>
-                                <a :href="post.path">{{ post.title }}</a>
-                            </header>
-                            <p class="content" v-text="post.contentRendered" style="white-space: pre-line;"></p>
-                            <footer>
-                                <div class="row">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="feather feather-navigation">
-                                        <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
-                                    </svg>
-                                    <span>{{ post.frontmatter.location }}</span>
-                                </div>
-                                <div class="row">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="feather feather-tag">
-                                        <path
-                                            d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z">
-                                        </path>
-                                        <line x1="7" y1="7" x2="7" y2="7"></line>
-                                    </svg>
-                                    <span class="el-tag1 mgr-10" v-for="(tag, idx) in post.tags" :key="idx">{{
-                                        tag
+    <div :class="$style['post-list']">
+        <section :class="$style.posts">
+            <header :class="$style.title">Posts</header>
+            <ul>
+                <li v-for="(post, idx) in filterList" :key="idx">
+                    <article class="card mb1">
+                        <header>
+                            <a :href="'.' + post.url">{{ post.title }}</a>
+                        </header>
+                        <div v-html="post.excerpt"></div>
+                        <footer>
+                            <div :class="$style.row">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="svg-icon feather-navigation">
+                                    <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                                </svg>
+                                <span>{{ post.location }}</span>
+                            </div>
+                            <div :class="$style.row">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="svg-icon feather-tag">
+                                    <path
+                                        d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z">
+                                    </path>
+                                    <line x1="7" y1="7" x2="7" y2="7"></line>
+                                </svg>
+                                <span class="tag mgr-10" v-for="(tag, idx) in post.tags" :key="idx">{{
+                                    tag
                                     }}</span>
-                                </div>
-                                <div class="row">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="feather feather-clock">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                    <time pubdate>{{ post.date }}</time>
-                                </div>
-                            </footer>
-                        </article>
+                            </div>
+                            <div :class="$style.row">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="svg-icon feather-clock">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <time pubdate>{{ post.date.string }}</time>
+                            </div>
+                        </footer>
+                    </article>
+                </li>
+            </ul>
+        </section>
+        <section :class="$style.tags">
+            <header :class="$style.title">Tags</header>
+            <div>
+                <span v-if="filterParam.tags" class="tag is-round deletable mgl-10">
+                    <span>{{ filterParam.tags }}</span>
+                    <span class="del-btn" @click="filterPost('')">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="svg-icon">
+                            <path fill="currentColor"
+                                d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z">
+                            </path>
+                        </svg>
+                    </span>
+                </span>
+            </div>
+            <div class="card">
+                <ul>
+                    <li v-for="(classify, idx) in classifyList" :key="idx" class="mb1">
+                        <button type="button" class="tag" @click="filterPost(classify[0])">
+                            {{ classify[0] + '(' + classify[1] + ')' }}
+                        </button>
                     </li>
                 </ul>
             </div>
-            <div class="tag-list">
-                <div>
-                    <span class="title">Tags</span>
-                    <span v-if="filterParam.tags" class="el-tag is-round deletable mgl-10">
-                        <span>{{ filterParam.tags }}</span>
-                        <span class="del-btn" @click="filterPost('')">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
-                                <path fill="currentColor"
-                                    d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z">
-                                </path>
-                            </svg>
-                        </span>
-                    </span>
-                </div>
-                <div class="el-card">
-                    <ul>
-                        <li v-for="(classify, idx) in classifyList" :key="idx" class="mgb-20">
-                            <button type="button" class="el-tag" @click="filterPost(classify[0])">
-                                {{ classify[0] + '(' + classify[1] + ')' }}
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        </section>
     </div>
 </template>
 
@@ -79,18 +77,6 @@ import { ref, computed } from 'vue';
 import { data as initList } from './posts.data.js'
 
 console.log(initList)
-
-// 截取部分内容
-const fullList = initList.map(post => {
-    const { contentRendered } = post
-    if (contentRendered) {
-        // 去除 HTML 标签和换行符，并替换 # 和空格#
-        let processedString = contentRendered.replace(/<\/?[^>]+>/g, '').replace(/[\r\n]+/g, '').replace(/# | #/g, '');
-        // 截取前 50 个字符
-        post.contentRendered = processedString.slice(0, 75);
-    }
-    return post
-})
 
 const filterParam = ref({
     tags: ''
@@ -102,44 +88,20 @@ const filterPost = (classify: string) => {
 
 const filterList = computed(() => {
     const { tags } = filterParam.value
-    let res = fullList
+    let res = initList
     if (tags !== '') {
-        res = fullList.filter(post => {
-            return post.tags.indexOf(tags) !== -1
+        res = initList.filter(post => {
+            return post.tags && post.tags.indexOf(tags) !== -1
         })
     }
-    return res.sort(sort('dec'))
+    return res
 })
-
-const sort = (flag: string) => {
-    const inc = flag === 'inc' ? 1 : -1
-    return (a, b) => {
-        // 返回值应该是一个数字，其正负性表示两个元素的相对顺序
-        // > 0	a 在 b 后，如 [b, a]
-        // < 0	a 在 b 前，如 [a, b]
-        if (a.date === '') return 1
-        if (b.date === '') return -1
-        const ymd1 = a.date?.split('-')
-        const ymd2 = b.date?.split('-')
-        let i = 0
-        let res = 0
-        while (i < 3) {
-            if (ymd1[i] === ymd2[i])
-                i++
-            else {
-                res = parseInt(ymd1[i]) > parseInt(ymd2[i]) ? inc : -inc
-                i = 99
-            }
-        }
-        return res
-    }
-}
 
 const map = new Map()
 const classifyList = computed(() => {
-    fullList.forEach(post => {
+    initList.forEach(post => {
         const { tags } = post
-        tags.forEach(tags => {
+        Array.isArray(tags) && tags.forEach(tags => {
             if (map.has(tags)) {
                 map.set(tags, map.get(tags) + 1)
             } else {
@@ -148,36 +110,23 @@ const classifyList = computed(() => {
         });
     })
     return Array.from(map).map(item => {
-        // return item[0] + `(${item[1]})`
         return item
     })
 })
-// console.log(classifyList.value, 'classify');
 </script>
 
-<style scoped>
-@media (min-width: 959px) {
-    .dark .malou {
-        background-image: url('/images/heroImg.jpg');
-    }
-
-    .malou {
-        background-image: url('/images/heroImgLight.jpg');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-}
-
-.malou {
-    background-color: var(--el-bg-color);
-}
-
-.section1 {
+<style module>
+.post-list {
     display: flex;
 
-    .post-list {
+    .title {
+        display: inline-block;
+        font-size: 1.35rem;
+        font-weight: 600;
+        padding: 1rem 0;
+    }
+
+    .posts {
         flex: 3;
 
         .row {
@@ -196,7 +145,7 @@ const classifyList = computed(() => {
 
     }
 
-    .tag-list {
+    .tags {
         flex: 1;
         margin-left: 2rem;
     }
@@ -206,34 +155,17 @@ const classifyList = computed(() => {
             display: none;
         }
     }
-}
 
-.title {
-    display: inline-block;
-    font-size: 1.35rem;
-    font-weight: 600;
-    padding: 1rem 0;
-}
+    .del-btn {
+        height: 1em;
+        width: 1em;
+        margin-left: 0.5rem;
+        cursor: pointer;
+        border-radius: var(--tag-border-radius-rounded);
+    }
 
-.del-btn {
-    height: 1em;
-    width: 1em;
-    margin-left: 0.5rem;
-    cursor: pointer;
-    border-radius: var(--el-tag-border-radius-rounded);
-}
-
-.del-btn:hover {
-    background-color: var(--el-color-primary-light-5);
-}
-
-.feather {
-    width: 1rem;
-    height: 1rem;
-    margin-right: 5px;
-}
-
-.content {
-    margin: 5px 0;
+    .del-btn:hover {
+        background-color: var(--el-color-primary-light-5);
+    }
 }
 </style>

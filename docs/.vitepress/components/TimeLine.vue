@@ -17,7 +17,7 @@
                         </h3>
                         <div v-for="(ccitem, ccidx) in citem" :key="ccidx">
                             <div>
-                                <a :href="ccitem.path">{{ ccitem.title }}</a>
+                                <a :href="'.' + ccitem.url">{{ ccitem.title }}</a>
                             </div>
                         </div>
                     </template>
@@ -33,14 +33,14 @@ import { data as initList } from './posts.data.js'
 
 const timeline = new Map()
 initList.forEach(i => {
-    const { title, path } = i
-    const date = new Date(i.date)
+    const { title, url } = i
+    const date = new Date(i.date.time)
     const year = date.getFullYear()
     const mon = date.getMonth()
     const day = date.getDate()
 
     const saved = timeline.has(year)
-    const route = { title, path, day }
+    const route = { title, url, day }
     if (saved) {
         const curYear = timeline.get(year)
         curYear[mon].push(route)
@@ -70,7 +70,7 @@ const tlArray = computed(() => {
 const ym = ref('')
 </script>
 
-<style scoped>
+<style module>
 label {
     width: 80px;
     display: inline-block;

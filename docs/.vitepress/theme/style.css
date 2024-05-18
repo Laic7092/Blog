@@ -43,7 +43,7 @@
  *   in custom container, badges, etc.
  * -------------------------------------------------------------------------- */
 
- :root {
+:root {
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
   --vp-c-default-3: var(--vp-c-gray-3);
@@ -92,17 +92,13 @@
 
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #bd34fe 30%,
-    #41d1ff
-  );
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg,
+      #bd34fe 30%,
+      #41d1ff);
 
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #bd34fe 50%,
-    #47caff 50%
-  );
+  --vp-home-hero-image-background-image: linear-gradient(-45deg,
+      #bd34fe 50%,
+      #47caff 50%);
   --vp-home-hero-image-filter: blur(44px);
 }
 
@@ -137,3 +133,39 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+
+:root {
+  --base-radius: 4px;
+}
+
+.card {
+  padding: 1em;
+  background-color: var(--vp-c-bg);
+  box-shadow: var(--vp-shadow-1);
+  border-radius: var(--base-radius);
+}
+
+.tag {
+  border: 1px solid var(--vp-c-border);
+  padding: 0 0.6em;
+  color: var(--vp-c-text-1);
+  border-radius: var(--base-radius);
+}
+
+.tag+.tag {
+  margin-left: 5px;
+}
+
+.mb1 {
+  margin-bottom: 1rem;
+}
+
+.svg-icon {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.svg-icon+.svg-icon {
+  margin-right: 5px;
+}
