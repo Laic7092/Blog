@@ -183,3 +183,9 @@ html.dark {
   margin-top: 0;
   padding-top: 0;
 }
+
+.vp-doc ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
