@@ -177,3 +177,9 @@ html.dark {
 .svg-icon+.svg-icon {
   margin-right: 5px;
 }
+
+.vp-doc hr+h2 {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
