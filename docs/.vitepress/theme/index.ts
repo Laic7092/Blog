@@ -10,7 +10,7 @@ export default {
   extends: DefaultTheme,
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      // 'doc-before': () => h(MyHeader),
+      'doc-before': () => h(MyHeader),
       // 'doc-after': () => h(MyFooter)
     })
   },
