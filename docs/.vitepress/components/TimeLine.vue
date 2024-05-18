@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>归档</h1>
         <div class="flex-r-lc">
             <label for="ym">选择年月</label>
             <input type="month" id="ym" v-model="ym">
