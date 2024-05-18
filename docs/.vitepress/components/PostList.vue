@@ -151,7 +151,7 @@ const classifyList = computed(() => {
     }
 
     @media (max-width: 719px) {
-        .tag-list {
+        .tags {
             display: none;
         }
     }
