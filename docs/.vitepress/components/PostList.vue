@@ -7,7 +7,7 @@
                     <li v-for="(post, idx) in filterList" :key="idx">
                         <article class="card mb1">
                             <header>
-                                <a :href="'.' + post.url">{{ post.title }}</a>
+                                <a :href="withBase(post.url)">{{ post.title }}</a>
                             </header>
                             <div v-html="post.excerpt"></div>
                             <footer>
@@ -30,7 +30,7 @@
                                     </svg>
                                     <span class="tag mgr-10" v-for="(tag, idx) in post.tags" :key="idx">{{
                                         tag
-                                    }}</span>
+                                        }}</span>
                                 </div>
                                 <div :class="$style.row">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -76,10 +76,9 @@
 </template>
 
 <script setup lang="ts">
+import { withBase } from 'vitepress'
 import { ref, computed } from 'vue';
 import { data as initList } from './posts.data.js'
-
-console.log(initList)
 
 const filterParam = ref({
     tags: ''

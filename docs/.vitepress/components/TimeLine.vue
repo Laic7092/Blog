@@ -16,7 +16,7 @@
                         </h3>
                         <div v-for="(ccitem, ccidx) in citem" :key="ccidx">
                             <div>
-                                <a :href="'.' + ccitem.url">{{ ccitem.title }}</a>
+                                <a :href="withBase(ccitem.url)">{{ ccitem.title }}</a>
                             </div>
                         </div>
                     </template>
@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import { withBase } from 'vitepress';
 import { ref, computed } from 'vue'
 import { data as initList } from './posts.data.js'
 
