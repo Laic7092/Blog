@@ -24,7 +24,7 @@ export default createContentLoader('posts/*/*/*/*.md', {
             .map(({ url, frontmatter, excerpt }) => ({
                 title: frontmatter.title,
                 url,
-                excerpt: "<p>敬请期待</p>",
+                excerpt: excerpt || "<p>点击上方链接查看</p>",
                 tags: frontmatter.tags,
                 location: frontmatter.location,
                 date: formatDate(frontmatter.date)
