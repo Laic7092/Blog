@@ -6,9 +6,10 @@
   },
   "type": "module",
   "devDependencies": {
-    "vitepress": "^1.1.4"
+    "vitepress": "^1.2.0"
   },
   "dependencies": {
     "vue": "^3.4.27"
-  }
+  },
+  "packageManager": "pnpm@9.1.1"
 }
