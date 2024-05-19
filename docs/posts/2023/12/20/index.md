@@ -7,7 +7,7 @@ tags:
 - game
 ---
 
-> [!TIP]前置知识
+> [!TIP]
 >
 > 1. `html`,`javascript`基础知识
 > 2. `dom`编程基础知识
