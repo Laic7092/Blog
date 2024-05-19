@@ -136,6 +136,7 @@
 
 :root {
   --base-radius: 4px;
+  --base-span: 5px;
   --color-primary: #409eff;
   --color-primary-light-8: #d9ecff;
   --color-primary-light-9: #ecf5ff;
@@ -162,7 +163,7 @@ html.dark {
 }
 
 .tag+.tag {
-  margin-left: 5px;
+  margin-left: var(--base-span);
 }
 
 .mb1 {
@@ -174,8 +175,13 @@ html.dark {
   height: 1rem;
 }
 
+.svg-icon+span,
+.svg-icon+time {
+  margin-left: var(--base-span);
+}
+
 .svg-icon+.svg-icon {
-  margin-right: 5px;
+  margin-right: var(--base-span);
 }
 
 .vp-doc hr+h2 {

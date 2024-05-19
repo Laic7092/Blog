@@ -131,19 +131,25 @@ const classifyList = computed(() => {
     .posts {
         flex: 3;
 
-        .row {
-            display: inline-flex;
-            width: 33.33%;
-            align-items: center;
-        }
+        footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
 
-        @media (max-width: 419px) {
             .row {
                 display: flex;
-                width: 100%;
+                align-items: center;
+            }
+
+            .row+.row {
+                margin-top: 5px;
             }
         }
 
+        @media (max-width: 419px) {
+            footer {
+                display: initial;
+            }
+        }
 
     }
 
@@ -159,18 +165,6 @@ const classifyList = computed(() => {
         .tags {
             display: none;
         }
-    }
-
-    .del-btn {
-        height: 1em;
-        width: 1em;
-        margin-left: 0.5rem;
-        cursor: pointer;
-        border-radius: var(--tag-border-radius-rounded);
-    }
-
-    .del-btn:hover {
-        background-color: var(--el-color-primary-light-5);
     }
 }
 </style>
