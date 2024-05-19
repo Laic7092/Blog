@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress';
 import { ref, computed } from 'vue'
-import { data as initList } from './posts.data.js'
+import { data as initList } from '../theme/posts.data'
 
 const timeline = new Map()
 initList.forEach(i => {
