@@ -15,9 +15,7 @@ interface Post {
 declare const data: Post[]
 export { data }
 
-// posts/2023/03/21/
-export default createContentLoader('posts/*/*/*/*.md', {
-
+export default createContentLoader('posts/**/*.md', {
     excerpt: true,
     transform(raw): Post[] {
         return raw
