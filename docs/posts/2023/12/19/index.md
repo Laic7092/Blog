@@ -1,4 +1,5 @@
 ---
+visible: false
 title: 无聊地等待下班
 date: 2023-12-19 18:22
 tags:
