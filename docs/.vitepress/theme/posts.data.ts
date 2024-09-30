@@ -19,6 +19,7 @@ export default createContentLoader('posts/**/*.md', {
     excerpt: true,
     transform(raw): Post[] {
         return raw
+            .filter(({ frontmatter }) => !frontmatter.hidden)
             .map(({ url, frontmatter, excerpt }) => ({
                 title: frontmatter.title,
                 url,

@@ -1,5 +1,5 @@
 ---
-visible: false
+hidden: true
 title: 周末干了一个通宵的样式
 date: 2023-12-18 17:12
 tags:
